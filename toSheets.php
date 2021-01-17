@@ -5,7 +5,7 @@ class toSheets {
 
     public function write_users_on_dailySheets($users_list, $intern_users_list){
         //clientの作成
-        $credentials_path = "/home/vagrant/workspace/messagesAmount/credentials.json";
+        $credentials_path = "./credentials.json";
         $client = new \Google_Client();
         $client->setScopes([
             \Google_Service_Sheets::SPREADSHEETS,
@@ -41,7 +41,7 @@ class toSheets {
         }
 
         $service = new \Google_Service_Sheets($client);
-        $spreadsheet_id = "1FgH0W9V_Js9MN0KeqEU7HSvzilVSLMAggcqdnIXJ54E";
+        $spreadsheet_id = "ID";
         $range = $sheetName."!A1";
         $body = new \Google_Service_Sheets_ValueRange([
             "majorDimension" => "ROWS",
@@ -49,15 +49,11 @@ class toSheets {
         ]);
         $params = ['valueInputOption' => 'USER_ENTERED'];
         $result = $service->spreadsheets_values->update($spreadsheet_id, $range, $body, $params);
-
-        //$updated_cell_count = $result->getUpdatedCells();
-        //printf("%d cells updated.", $result->getUpdatedCells());
-        //echo $updated_cell_count;
     }
 
     public function write_users_on_weeklySheets($users_list){
         //clientの作成
-        $credentials_path = "/home/vagrant/workspace/messagesAmount/credentials.json";
+        $credentials_path = "./credentials.json";
         $client = new \Google_Client();
         $client->setScopes([
             \Google_Service_Sheets::SPREADSHEETS,
@@ -82,7 +78,7 @@ class toSheets {
         }
 
         $service = new \Google_Service_Sheets($client);
-        $spreadsheet_id = "1FgH0W9V_Js9MN0KeqEU7HSvzilVSLMAggcqdnIXJ54E";
+        $spreadsheet_id = "ID";
         $range = $sheetName."!A1";
         $body = new \Google_Service_Sheets_ValueRange([
             "majorDimension" => "ROWS",
@@ -94,7 +90,7 @@ class toSheets {
 
 
     public function write_values_on_dailySheets($count_total_num, $count_num, $users_list){
-        $credentials_path = "/home/vagrant/workspace/messagesAmount/credentials.json";
+        $credentials_path = "./credentials.json";
         $client = new \Google_Client();
         $client->setScopes([
             \Google_Service_Sheets::SPREADSHEETS,
@@ -138,10 +134,8 @@ class toSheets {
         }
         ksort($send_data[0]);
 
-        //var_dump($send_data);
-
         $service = new \Google_Service_Sheets($client);
-        $spreadsheet_id = "1FgH0W9V_Js9MN0KeqEU7HSvzilVSLMAggcqdnIXJ54E";
+        $spreadsheet_id = "ID";
         $range = $sheetName."!A3";
         $body = new \Google_Service_Sheets_ValueRange([
             "majorDimension" => "ROWS",
@@ -149,15 +143,11 @@ class toSheets {
         ]);
         $params = ['valueInputOption' => 'USER_ENTERED'];
         $result = $service->spreadsheets_values->append($spreadsheet_id, $range, $body, $params);
-        //echo $result;
-
-        //$updated = $result->getUpdates();
-        //echo $updated;
     }
 
 
     public function write_values_on_weeklySheets($count_total_num, $count_num, $users_list){
-        $credentials_path = "/home/vagrant/workspace/messagesAmount/credentials.json";
+        $credentials_path = "./credentials.json";
         $client = new \Google_Client();
         $client->setScopes([
             \Google_Service_Sheets::SPREADSHEETS,
@@ -201,7 +191,7 @@ class toSheets {
         ksort($send_data[0]);
 
         $service = new \Google_Service_Sheets($client);
-        $spreadsheet_id = "1FgH0W9V_Js9MN0KeqEU7HSvzilVSLMAggcqdnIXJ54E";
+        $spreadsheet_id = "ID";
         $range = $sheetName."!A3";
         $body = new \Google_Service_Sheets_ValueRange([
             "majorDimension" => "ROWS",
