@@ -35,9 +35,9 @@ foreach($channel_list as $key){
     $count_total_num = $countData['totalCount'];
 }
 
-// $makeTextAndSend = new createTextAndSendSlack();
-// $rawJson = $makeTextAndSend -> create_text_daily($count_total_num, $count_num, $users_list);
-// $makeTextAndSend -> send_to_slack($rawJson);
+$makeTextAndSend = new createTextAndSendSlack();
+$rawJson = $makeTextAndSend -> create_text_daily($count_total_num, $count_num, $users_list);
+$makeTextAndSend -> send_to_slack($rawJson);
 
 $to_sheets = new toSheets();
 $to_sheets -> write_users_on_dailySheets($users_list, $intern_users_list);
