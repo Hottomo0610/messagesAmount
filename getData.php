@@ -7,7 +7,7 @@ class getData {
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => "https://slack.com/api/conversations.list?token=xoxp-20057120048-1182319415393-1528960139238-983ee68779ed05bb8bb69643c43cd5d7&exclude_archived=true&limit=500&types=public_channel"
+            CURLOPT_URL => "https://slack.com/api/conversations.list?token=xoxp-XXXXXXXXXXXXXXXXXXXXXXXX&exclude_archived=true&limit=500&types=public_channel"
         ]);
         $resp = curl_exec($ch);
         curl_close($ch);
@@ -26,7 +26,6 @@ class getData {
 
         $channel_list = array_values($channel_list);
 
-        //error_log(print_r($channel_list, true));
         return $channel_list;
     }
 
@@ -36,14 +35,13 @@ class getData {
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => "https://slack.com/api/users.list?token=xoxp-20057120048-1182319415393-1528960139238-983ee68779ed05bb8bb69643c43cd5d7"
+            CURLOPT_URL => "https://slack.com/api/users.list?token=xoxp-XXXXXXXXXXXXXXXXXXXXXXXXXX"
         ]);
         $resp = curl_exec($ch);
         curl_close($ch);
 
         $decodedData = json_decode($resp, true);
         $users_list = $decodedData['members'];
-        //error_log(print_r($users_list, true));
 
         //不要なユーザーやbotを除外して、さらにデータを加工
         $valid_users_list = array();
@@ -64,10 +62,11 @@ class getData {
     }
 
     public function get_intern_users_list(){
+        //インターン生用のチャンネルからインターン生のユーザーリストを取得
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => "https://slack.com/api/conversations.members?token=xoxp-20057120048-1182319415393-1528960139238-983ee68779ed05bb8bb69643c43cd5d7&channel=GBH6SHBAT"
+            CURLOPT_URL => "https://slack.com/api/conversations.members?token=xoxp-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&channel=GBH6SHBAT"
         ]);
         $resp = curl_exec($ch);
         curl_close($ch);
@@ -87,7 +86,7 @@ class getData {
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => "https://slack.com/api/conversations.history?token=xoxp-20057120048-1182319415393-1528960139238-983ee68779ed05bb8bb69643c43cd5d7&channel=$channelID&inclusive=true&oldest=$yesterday_u&latest=$today_u"
+            CURLOPT_URL => "https://slack.com/api/conversations.history?token=xoxp-XXXXXXXXXXXXXXXXX&channel=$channelID&inclusive=true&oldest=$yesterday_u&latest=$today_u"
         ]);
         $resp = curl_exec($ch);
         curl_close($ch);
